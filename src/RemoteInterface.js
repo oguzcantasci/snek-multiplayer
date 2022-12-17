@@ -56,6 +56,9 @@ class RemoteInterface {
   handleNewClient(client) {
     // process.stdout.write('\x07')
     client.setEncoding('utf8')
+    for (const c of this.clients) {
+      c.write("A new player has joined the server");
+    }
     this.clients.push(client)
     this.resetIdleTimer(client, MAX_IDLE_TIMEOUT / 2)
 
