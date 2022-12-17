@@ -75,6 +75,9 @@ class RemoteInterface {
   }
 
   handleClientEnded(client) {
+    for (const c of this.clients) {
+      c.write(`A player has left the server`);
+    }
     if (client.idleTimer) clearTimeout(client.idleTimer)
     if (this.clientEndHandler) this.clientEndHandler(client)
   }
